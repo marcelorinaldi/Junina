@@ -1,0 +1,6 @@
+salva no banco a data de edição e data de deleção
+cadastro usuario
+login
+salvar no banco quem cadastrou
+segurança em todas as api's
+retirar espaço em branco
