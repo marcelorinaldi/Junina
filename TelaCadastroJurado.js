@@ -6,7 +6,7 @@ import Menu from './Menu';
 
 function TelaInsert({ navigation }) {
   const [nome, setNome] = useState('');
-  const [login, setLogin] = useState('');
+  const [curso, setCurso] = useState('');
   const [senha, setSenha] = useState('');
   const [senha2, setSenha2] = useState('');
 
@@ -36,7 +36,7 @@ function TelaInsert({ navigation }) {
 
 limpar = () => {
   setNome('');
-  setLogin('');
+  setCurso('');
   setSenha('');
   setSenha2('');
 }
@@ -47,21 +47,17 @@ return (
         <Text> </Text>
         <Text> </Text>
         <TouchableOpacity onPress={() => navigation.navigate('TelaLogin')}>
-          <Image source={require('./assets/orcamento.png')} style={css.logo}></Image>
+        <Image source={require('./assets/junina.png')} style={css.logo}></Image>
         </TouchableOpacity>
-        <Text style={css.letra}>Novo Usuário</Text>
+        <Text style={css.text}>Novo Jurado</Text>
         <View>
-          <Text style={css.letra2}>Nome</Text>
+          <Text style={css.text}>Nome</Text>
           <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setNome(text)} value={nome}></TextInput>
-          <Text style={css.letra2}>Login</Text>
-          <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setLogin(text)} value={login}></TextInput>
-          <Text style={css.letra2}>Senha</Text>
-          <TextInput maxLength={20} secureTextEntry={true} style={css.campo} onChangeText={(text) => setSenha(text)} value={senha}></TextInput>
-          <Text style={css.letra2}>Confirmar Senha</Text>
-          <TextInput maxLength={20} secureTextEntry={true} style={css.campo} onChangeText={(text) => setSenha2(text)} value={senha2}></TextInput>
+          <Text style={css.text}>Curso</Text>
+          <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setCurso(text)} value={curso}></TextInput>
           <View style={css.viewbotoes}>
-            <View><Button title="Limpar" color="green" onPress={limpar} /></View>
-            <View><Button title="Cadastrar" color="green" onPress={cadastrar} /></View>
+            <View><Button title="Limpar" color="orange" onPress={limpar} /></View>
+            <View><Button title="Cadastrar" color="orange" onPress={cadastrar} /></View>
           </View>
         </View>
         <Text> </Text>

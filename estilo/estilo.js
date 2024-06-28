@@ -5,8 +5,15 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
+        backgroundColor: '#90F7BA',
     },
+    
+    radio: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
     logo: {
         marginBottom: 20,
         width: 200,
@@ -95,7 +102,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         height: 130,
         borderRadius: 10,
-        borderColor: 'lightgreen',
+        borderColor: 'red',
         borderWidth: 1,
     },
     viewletra1: {
@@ -212,7 +219,7 @@ export default StyleSheet.create({
     },
 
     text: {
-        color: 'green',
+        color: '#FA5341',
         fontWeight: 'bold',
         fontSize: 18,
     },

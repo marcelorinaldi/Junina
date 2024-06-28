@@ -57,18 +57,18 @@ function TelaLogin({ navigation }) {
       <Text> </Text>
       <Text> </Text>
 
-      <Image source={require('./assets/orcamento.png')} style={css.logo} />
+      <Image source={require('./assets/junina.png')} style={css.logo}></Image>
 
-      <Text style={css.text}>Bem vindo! Faça login ou cadastre-se!</Text>
+      <Text style={css.text}>Bem vindo!</Text>
       <View>
-        <Text>Login</Text>
+        <Text style={css.text}>Login</Text>
         <TextInput
           style={css.campo}
           onChangeText={(text) => setLoginx(text)}
           value={loginx}
           maxLength={10}
         />
-        <Text>Senha</Text>
+        <Text style={css.text}>Senha</Text>
         <TextInput
           style={css.campo}
           onChangeText={(text) => setSenhax(text)}
@@ -77,9 +77,9 @@ function TelaLogin({ navigation }) {
           maxLength={20}
         />
         <View style={css.viewbotoes}>
-          <View><Button title="Limpar" color="green" onPress={limpar} /></View>
-          <View><Button title="Login" color="green" onPress={logar} /></View>
-          <View><Button title='Cadastro' color="green" onPress={() => navigation.navigate('TelaCadastro')} /></View>
+          <View><Button title="Login" color="orange" onPress={logar} /></View>
+          <View><Button title='Cadastrar Aluno' color="orange" onPress={() => navigation.navigate('TelaCadastroAluno')} /></View>
+          <View><Button title='Cadastrar Jurado' color="orange" onPress={() => navigation.navigate('TelaCadastroJurado')} /></View>
         </View>
       </View>
       {loading && (
