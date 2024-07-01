@@ -17,51 +17,39 @@ function TelaInsert({ navigation }) {
 
   cadastrar = () => {
     let token = 'Q!W@ee344%%R';
-    if (senha2.trim() == senha.trim()) {
-      if (nome.trim() !== '' && senha.trim() !== '') {
-        alert(nome + '\n cadastrado com sucesso!');
-        console.log(nome,login,senha);
-        axios.post('http://192.168.56.2/api/cadastro/', { token, login, nome, senha })
-        //axios.post('https://api.semlimite.app.br/cadastro/', { token, nome, login,senha })
-          .then(response => {
-            const data = response.data;
-            aviso = 0;
-          })
-          .catch(error => {
-            console.log('Erro ao enviar dados:', error);
-          });
-        navigation.navigate('TelaLogin');
-      }else {
-        alert('Por favor, preencha todos os campos!');
-      }
-    }else {
-      alert('As senhas não coincidem!');
-    }
+    axios.post('http://192.168.56.2/api/cadastro/', { token, nome, curso, categoria })
+      .then(response => {
+        const data = response.data;
+        aviso = 0;
+      })
+      .catch(error => {
+        console.log('Erro ao enviar dados:', error);
+      });
+    navigation.navigate('TelaLogin');
   }
 
-limpar = () => {
-  setNome('');
-  setLogin('');
-  setSenha('');
-  setSenha2('');
-}
-return (
-  <SafeAreaView>
-    <ScrollView>
-      <View style={css.container}>
-        <Text> </Text>
-        <Text> </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('TelaLogin')}>
-        <Image source={require('./assets/junina.png')} style={css.logo}></Image>
-        </TouchableOpacity>
-        <Text style={css.text}>Novo participante</Text>
-        <View>
-          <Text style={css.text}>Nome</Text>
-          <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setNome(text)} value={nome}></TextInput>
-          <Text style={css.text}>Curso</Text>
-          <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setCurso(text)} value={curso}></TextInput>
-          <Text style={css.text}>Categoria</Text>
-          <RadioGroup style={css.radio}
+  limpar = () => {
+    setNome('');
+    setLogin('');
+    setCategoria('');
+  }
+  return (
+    <SafeAreaView>
+      <ScrollView>
+        <View style={css.container}>
+          <Text> </Text>
+          <Text> </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('TelaLogin')}>
+            <Image source={require('./assets/junina.png')} style={css.logo}></Image>
+          </TouchableOpacity>
+          <Text style={css.text}>Novo participante</Text>
+          <View>
+            <Text style={css.text}>Nome</Text>
+            <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setNome(text)} value={nome}></TextInput>
+            <Text style={css.text}>Curso</Text>
+            <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setCurso(text)} value={curso}></TextInput>
+            <Text style={css.text}>Categoria</Text>
+            <RadioGroup style={css.radio}
               radioButtons={categorias}
               onPress={(radioButtonsArray) => {
                 const selectedButton = radioButtonsArray.find(radioButton => radioButton.selected);
@@ -69,17 +57,17 @@ return (
               }}
               layout="row"
             />
-          <View style={css.viewbotoes}>
-            <View><Button title="Limpar" color="orange" onPress={limpar} /></View>
-            <View><Button title="Cadastrar" color="orange" onPress={cadastrar} /></View>
+            <View style={css.viewbotoes}>
+              <View><Button title="Limpar" color="orange" onPress={limpar} /></View>
+              <View><Button title="Cadastrar" color="orange" onPress={cadastrar} /></View>
+            </View>
           </View>
+          <Text> </Text>
+          <Menu navigation={navigation} />
         </View>
-        <Text> </Text>
-        <Menu navigation={navigation} />
-      </View>
-    </ScrollView>
-  </SafeAreaView>
-);
-  }
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
 export default TelaInsert;
 

@@ -5,16 +5,16 @@ import css from './estilo/estilo';
 function Menu({ navigation }) {
     return (
         <View style={css.footerMenu}>
-            <TouchableOpacity onPress={() => navigation.navigate('TelaCadastro')}>
+            <TouchableOpacity onPress={() => navigation.navigate('TelaCadastroAluno')}>
                 <Image source={require('./assets/user.png')} style={css.footerMenuItem}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('TelaInsert')}>
+            <TouchableOpacity onPress={() => navigation.navigate('TelaCadastroJurado')}>
                 <Image source={require('./assets/add.png')} style={css.footerMenuItem}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('TelaPagamento')}>
+            <TouchableOpacity onPress={() => navigation.navigate('TelaInicial')}>
                 <Image source={require('./assets/payment.png')} style={css.footerMenuItem}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('TelaPagas')}>
+            <TouchableOpacity onPress={() => navigation.navigate('TelaLogin')}>
                 <Image source={require('./assets/pagas.png')} style={css.footerMenuItem}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('TelaDelete')}>
