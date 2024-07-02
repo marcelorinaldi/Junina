@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Text, View, Button, TextInput, Alert, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
-import css from './estilo/estilo';
 import axios from 'axios';
+import css from './estilo/estilo';
 import Menu from './Menu';
 
 function TelaInsert({ navigation }) {
@@ -10,29 +10,41 @@ function TelaInsert({ navigation }) {
   const [curso, setCurso] = useState('');
   const [categoria, setCategoria] = useState('');
 
-  const categorias = [
-    { label: 'Miss', value: 'miss' },
-    { label: 'Mister', value: 'mister' },
-  ];
+  const [categorias, setCategorias] = useState([
+    { id: '1', label: 'Miss', value: 'miss', selected: false },
+    { id: '2', label: 'Mister', value: 'mister', selected: false },
+  ]);
 
-  cadastrar = () => {
-    let token = 'Q!W@ee344%%R';
+  const cadastrar = () => {
+    const token = 'Q!W@ee344%%R';
     axios.post('http://192.168.56.2/api/cadastro/', { token, nome, curso, categoria })
       .then(response => {
-        const data = response.data;
-        aviso = 0;
+        Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
+        navigation.navigate('TelaLogin');
       })
       .catch(error => {
-        console.log('Erro ao enviar dados:', error);
+        console.error('Erro ao enviar dados:', error);
+        Alert.alert('Erro', 'Erro ao cadastrar usuário. Tente novamente.');
       });
-    navigation.navigate('TelaLogin');
-  }
+  };
 
-  limpar = () => {
+  const limpar = () => {
     setNome('');
-    setLogin('');
+    setCurso('');
     setCategoria('');
-  }
+    setCategorias(categorias.map(c => ({ ...c, selected: false })));
+  };
+
+  const handleCategoriaChange = (selectedId) => {
+    const updatedCategorias = categorias.map(c => ({
+      ...c,
+      selected: c.id === selectedId,
+    }));
+    const selectedButton = updatedCategorias.find(radioButton => radioButton.selected);
+    setCategorias(updatedCategorias);
+    setCategoria(selectedButton ? selectedButton.value : '');
+  };
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -40,26 +52,23 @@ function TelaInsert({ navigation }) {
           <Text> </Text>
           <Text> </Text>
           <TouchableOpacity onPress={() => navigation.navigate('TelaLogin')}>
-            <Image source={require('./assets/junina.png')} style={css.logo}></Image>
+            <Image source={require('./assets/junina.png')} style={css.logo} />
           </TouchableOpacity>
           <Text style={css.text}>Novo participante</Text>
           <View>
             <Text style={css.text}>Nome</Text>
-            <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setNome(text)} value={nome}></TextInput>
+            <TextInput maxLength={20} style={css.campo} onChangeText={setNome} value={nome} />
             <Text style={css.text}>Curso</Text>
-            <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setCurso(text)} value={curso}></TextInput>
+            <TextInput maxLength={20} style={css.campo} onChangeText={setCurso} value={curso} />
             <Text style={css.text}>Categoria</Text>
-            <RadioGroup style={css.radio}
+            <RadioGroup
               radioButtons={categorias}
-              onPress={(radioButtonsArray) => {
-                const selectedButton = radioButtonsArray.find(radioButton => radioButton.selected);
-                setCategoria(selectedButton ? selectedButton.value : '');
-              }}
+              onPress={handleCategoriaChange}
               layout="row"
             />
             <View style={css.viewbotoes}>
-              <View><Button title="Limpar" color="orange" onPress={limpar} /></View>
-              <View><Button title="Cadastrar" color="orange" onPress={cadastrar} /></View>
+              <Button title="Limpar" color="orange" onPress={limpar} />
+              <Button title="Cadastrar" color="orange" onPress={cadastrar} />
             </View>
           </View>
           <Text> </Text>
@@ -69,5 +78,5 @@ function TelaInsert({ navigation }) {
     </SafeAreaView>
   );
 }
-export default TelaInsert;
 
+export default TelaInsert;

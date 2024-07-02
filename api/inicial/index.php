@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para selecionar todos os dados da tabela usuario
-$sql = "SELECT count(id) as total_orcamento, sum(receitas) as total_receita, sum(despesas) as total_despesa from orcamento";
+$sql = "SELECT * FROM app_junina_v6.aluno;";
 $result = $conn->query($sql);
 //print_r($result);
 // Verifica se há resultados para a consulta

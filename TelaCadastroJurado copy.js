@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Button, TextInput, Alert, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
-import RadioGroup from 'react-native-radio-buttons-group';
 import css from './estilo/estilo';
 import axios from 'axios';
 import Menu from './Menu';
@@ -8,12 +7,8 @@ import Menu from './Menu';
 function TelaInsert({ navigation }) {
   const [nome, setNome] = useState('');
   const [curso, setCurso] = useState('');
-  const [categoria, setCategoria] = useState('');
-
-  const categorias = [
-    { label: 'Miss', value: 'miss' },
-    { label: 'Mister', value: 'mister' },
-  ];
+  const [senha, setSenha] = useState('');
+  const [senha2, setSenha2] = useState('');
 
   cadastrar = () => {
     let token = 'Q!W@ee344%%R';
@@ -41,7 +36,7 @@ function TelaInsert({ navigation }) {
 
 limpar = () => {
   setNome('');
-  setLogin('');
+  setCurso('');
   setSenha('');
   setSenha2('');
 }
@@ -54,21 +49,12 @@ return (
         <TouchableOpacity onPress={() => navigation.navigate('TelaLogin')}>
         <Image source={require('./assets/junina.png')} style={css.logo}></Image>
         </TouchableOpacity>
-        <Text style={css.text}>Novo participante</Text>
+        <Text style={css.text}>Novo Jurado</Text>
         <View>
           <Text style={css.text}>Nome</Text>
           <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setNome(text)} value={nome}></TextInput>
           <Text style={css.text}>Curso</Text>
           <TextInput maxLength={20} style={css.campo} onChangeText={(text) => setCurso(text)} value={curso}></TextInput>
-          <Text style={css.text}>Categoria</Text>
-          <RadioGroup style={css.radio}
-              radioButtons={categorias}
-              onPress={(radioButtonsArray) => {
-                const selectedButton = radioButtonsArray.find(radioButton => radioButton.selected);
-                setCategoria(selectedButton ? selectedButton.value : '');
-              }}
-              layout="row"
-            />
           <View style={css.viewbotoes}>
             <View><Button title="Limpar" color="orange" onPress={limpar} /></View>
             <View><Button title="Cadastrar" color="orange" onPress={cadastrar} /></View>

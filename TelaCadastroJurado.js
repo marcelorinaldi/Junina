@@ -7,38 +7,24 @@ import Menu from './Menu';
 function TelaInsert({ navigation }) {
   const [nome, setNome] = useState('');
   const [curso, setCurso] = useState('');
-  const [senha, setSenha] = useState('');
-  const [senha2, setSenha2] = useState('');
 
-  cadastrar = () => {
-    let token = 'Q!W@ee344%%R';
-    if (senha2.trim() == senha.trim()) {
-      if (nome.trim() !== '' && senha.trim() !== '') {
-        alert(nome + '\n cadastrado com sucesso!');
-        console.log(nome,login,senha);
-        axios.post('http://192.168.56.2/api/cadastro/', { token, login, nome, senha })
-        //axios.post('https://api.semlimite.app.br/cadastro/', { token, nome, login,senha })
-          .then(response => {
-            const data = response.data;
-            aviso = 0;
-          })
-          .catch(error => {
-            console.log('Erro ao enviar dados:', error);
-          });
+  const cadastrar = () => {
+    const token = 'Q!W@ee344%%R';
+    axios.post('http://192.168.56.2/api/cadastroJurado/', { token, nome, curso })
+      .then(response => {
+        Alert.alert('Sucesso', 'Jurado cadastrado com sucesso!');
         navigation.navigate('TelaLogin');
-      }else {
-        alert('Por favor, preencha todos os campos!');
-      }
-    }else {
-      alert('As senhas não coincidem!');
-    }
-  }
+      })
+      .catch(error => {
+        console.error('Erro ao enviar dados:', error);
+        Alert.alert('Erro', 'Erro ao cadastrar jurado. Tente novamente.');
+      });
+  };
 
 limpar = () => {
   setNome('');
   setCurso('');
-  setSenha('');
-  setSenha2('');
+  
 }
 return (
   <SafeAreaView>
