@@ -25,24 +25,24 @@ try {
     $data = json_decode(file_get_contents('php://input'), true);
 	
     $nome = $data['nome'];
-    $curso = $data['curso'];
     $login = $data['login'];
     $senha = $data['senha'];
 	$tempo = date("Y-m-d H:i:s");
 	
 	
     // Inserir os dados na tabela 'usuario'
-    $sql = "INSERT INTO `app_junina_v6`.`jurados` (nome,curso,login,senha,data) VALUES (:nome,:curso,:login,:senha,:tempo)";
+    $sql = "INSERT INTO usuario(nome,login,senha,data_cad) VALUES (:nome,:login,:senha,:tempo)";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':curso', $curso);
-    $stmt->bindParam(':login', $login);
+	$stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':login', $login);    
     $stmt->bindParam(':senha', $senha);
+    //$stmt->bindParam(':imagem', $imagem);
     $stmt->bindParam(':tempo', $tempo);
+    //$stmt->bindParam(':quantidade', $quantidade);
     $stmt->execute();
 
     // Retornar uma resposta ao aplicativo
-    $response = array('success' => true, 'message' => ''.$tempo.', Jurado cadastrado!');
+    $response = array('success' => true, 'message' => ''.$tempo.', Produto cadastrado');
     echo json_encode($response);
 } catch (PDOException $e) {
     // Em caso de erro, retornar uma mensagem de erro

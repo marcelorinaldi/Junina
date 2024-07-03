@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import TelaInicial from "./TelaInicial";
+import TelaVotacao from "./TelaVotacao";
 import TelaSelect from "./TelaSelect";
 import TelaInsert from "./TelaInsert";
 import TelaDelete from "./TelaDelete";
@@ -24,9 +24,9 @@ const Stack = createStackNavigator();
 function Navigation() {
     return (
         < NavigationContainer >
-            <Stack.Navigator initialRouteName="TelaInicial" screenOptions={{ headerShown: true }}>
+            <Stack.Navigator initialRouteName="TelaVotacao" screenOptions={{ headerShown: true }}>
                 <Stack.Screen name="TelaLogin" component={TelaLogin} />
-                <Stack.Screen name="TelaInicial" component={TelaInicial} />
+                <Stack.Screen name="TelaVotacao" component={TelaVotacao} />
                 <Stack.Screen name="TelaSelect" component={TelaSelect} />
                 <Stack.Screen name="TelaInsert" component={TelaInsert} />
                 <Stack.Screen name="TelaDelete" component={TelaDelete} />

@@ -11,7 +11,7 @@ function Menu({ navigation }) {
             <TouchableOpacity onPress={() => navigation.navigate('TelaCadastroJurado')}>
                 <Image source={require('./assets/add.png')} style={css.footerMenuItem}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('TelaInicial')}>
+            <TouchableOpacity onPress={() => navigation.navigate('TelaVotacao')}>
                 <Image source={require('./assets/payment.png')} style={css.footerMenuItem}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('TelaLogin')}>

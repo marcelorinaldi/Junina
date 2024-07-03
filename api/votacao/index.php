@@ -10,12 +10,9 @@ if (!empty($token)) {
 		if($token === 'Q!W@ee344%%R'){
 		//$response = array('success' => true, 'message' => 'ok');
        // echo json_encode($response);
-	   
 	 // Conectar ao banco de dados		
-//require '../bancocasa.php';
-require '../bancosenac.php';
-//require '../../../bancoservidor.php';
 
+require '../bancosenac.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $username, $password);
@@ -26,23 +23,35 @@ try {
 	
     $nome = $data['nome'];
     $curso = $data['curso'];
-    $login = $data['login'];
-    $senha = $data['senha'];
-	$tempo = date("Y-m-d H:i:s");
+    $n1 = $data['n1'];
+    $n2 = $data['n2'];
+    $n3 = $data['n3'];
+    $n4 = $data['n4'];
+    $total = $data['total'];
+    $tipo = $data['tipo'];
+    $jurado_id = $data['jurado_id'];
+    $jurado_nome = $data['jurado_nome'];
+    $tempo = date("Y-m-d H:i:s");
 	
 	
     // Inserir os dados na tabela 'usuario'
-    $sql = "INSERT INTO `app_junina_v6`.`jurados` (nome,curso,login,senha,data) VALUES (:nome,:curso,:login,:senha,:tempo)";
+    $sql = "insert into participantes (nome,curso,n1,n2,n3,n4,total,tipo,jurado_id,jurado_nome) values (:nome,:curso,:n1,:n2,:n3,:n4,:total,:tipo,:jurado_id,:jurado_nome)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':curso', $curso);
-    $stmt->bindParam(':login', $login);
-    $stmt->bindParam(':senha', $senha);
+    $stmt->bindParam(':n1', $n1);
+    $stmt->bindParam(':n2', $n2);
+    $stmt->bindParam(':n3', $n3);
+    $stmt->bindParam(':n4', $n4);
+    $stmt->bindParam(':total', $total);
+    $stmt->bindParam(':tipo', $tipo);
+    $stmt->bindParam(':jurado_id', $jurado_id);
+    $stmt->bindParam(':jurado_nome', $jurado_nome);
     $stmt->bindParam(':tempo', $tempo);
     $stmt->execute();
 
     // Retornar uma resposta ao aplicativo
-    $response = array('success' => true, 'message' => ''.$tempo.', Jurado cadastrado!');
+    $response = array('success' => true, 'message' => ''.$tempo.', Votação realizada!');
     echo json_encode($response);
 } catch (PDOException $e) {
     // Em caso de erro, retornar uma mensagem de erro

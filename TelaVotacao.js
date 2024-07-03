@@ -31,14 +31,14 @@ const NumberSelect = ({ min, max, selectedValue, setSelectedValue }) => {
   );
 };
 
-function TelaInicial({ navigation, route }) {
+function TelaVotacao({ navigation, route }) {
   const [users, setUsers] = useState([]);
   const [jurado, setJurado] = useState('');
   const [aluno, setAluno] = useState('');
-  const [elegancia, setElegancia] = useState(1); // Valor inicial de elegância
-  const [desenvoltura, setDesenvoltura] = useState(1); // Valor inicial de desenvoltura
-  const [simpatia, setSimpatia] = useState(1); // Valor inicial de simpatia
-  const [sustentavel, setSustentavel] = useState(1); // Valor inicial de sustentável
+  const [elegancia, setElegancia] = useState(1);
+  const [desenvoltura, setDesenvoltura] = useState(1);
+  const [simpatia, setSimpatia] = useState(1);
+  const [sustentavel, setSustentavel] = useState(1);
 
   let id = '';
   let nome = '';
@@ -47,14 +47,13 @@ function TelaInicial({ navigation, route }) {
   }
 
   const fetchData = useCallback(() => {
-    fetch('http://192.168.56.2/api/inicial/')
+    fetch('http://192.168.56.2/api/votacao/')
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => alert('Sem Registro'));
 
     const extrairDados = () => {
       if (users.length > 0) {
-        // Adicione aqui as lógicas adicionais para extrair dados dos usuários
       }
     }
     extrairDados();
@@ -68,16 +67,9 @@ function TelaInicial({ navigation, route }) {
 
   return (
     <ScrollView contentContainerStyle={css.container}>
-      <Text style={css.text}>Usuário: {nome}</Text>
       <Image source={require('./assets/junina.png')} style={css.logo} />
       <View style={css.viewletra}>
-        <Picker
-          selectedValue={jurado}
-          style={{ height: 50, width: 150 }}
-          onValueChange={(itemValue) => setJurado(itemValue)}
-        >
-          <Picker.Item style={css.letra2} label="Jurado:" value="jurado" />
-        </Picker>
+        <Text style={css.text}>Jurado: {nome}</Text>
         <Picker
           selectedValue={aluno}
           style={{ height: 50, width: 150 }}
@@ -112,4 +104,4 @@ function TelaInicial({ navigation, route }) {
   );
 }
 
-export default TelaInicial;
+export default TelaVotacao;

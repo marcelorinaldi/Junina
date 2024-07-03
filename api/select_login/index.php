@@ -11,11 +11,10 @@ if ($conn->connect_error) {
 }
 
 // Prepara e executa a consulta SQL de forma segura
-$nome = $_GET['nome'];
 $login = $_GET['login'];
 $senha = $_GET['senha'];
 
-$sql = "SELECT id, nome, login FROM usuario WHERE login = ? AND senha = ? LIMIT 1";
+$sql = "SELECT id, nome FROM jurados WHERE `login` = ? AND `senha` = ? LIMIT 1";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('ss', $login, $senha);
 $stmt->execute();
@@ -38,7 +37,7 @@ if ($result->num_rows > 0) {
 
 } else {
     // Se não houver resultados, retorna uma mensagem de erro
-    echo json_encode(array("error" => "Nenhum usuário encontrado"));
+    echo json_encode(array("error" => "Nenhum jurado encontrado"));
 }
 
 // Fecha a conexão com o banco de dados
