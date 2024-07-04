@@ -13,7 +13,8 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para selecionar todos os dados da tabela usuario
-$sql = "SELECT * FROM orcamento_aprovado.orcamento where delecao=0 order by data_val asc";
+//$sql = "SELECT id,nome FROM orcamento_aprovado.orcamento where delecao=0 order by data_val asc limit 5";
+$sql = "SELECT  id,nome,curso,categoria FROM app_junina_v6.aluno";
 $result = $conn->query($sql);
 //print_r($result);
 // Verifica se há resultados para a consulta

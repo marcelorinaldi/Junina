@@ -19,29 +19,29 @@ try {
     $data = json_decode(file_get_contents('php://input'), true);
 	
     $a = $data['a'];    
-    $nome = $data['nome2'];    
-    $receitas = $data['receitas2'];    
-    $despesas = $data['despesas2'];    
-    $obs = $data['obs2'];    
+    $n1 = $data['n1'];
+    $n2 = $data['n2'];
+    $n3 = $data['n3'];
+    $n4 = $data['n4'];
 	$tempo = date("Y-m-d H:i:s");
-    $data_val = $data['data_validadex'];	
+ 	
 	
 	
    
     //$sql = "INSERT INTO avaliacao (titulo,nota,mensagem,tempo) VALUES (:titulo,:nota,:mensagem,:tempo)";
-    $sql = "UPDATE `orcamento` SET `nome` = :nome, `receitas`=:receitas,`despesas`=:despesas,`obs`=:obs, dt_edicao=:tempo, `data_val`=:data_val WHERE (`id` = :a) limit 1";
+    $sql = "UPDATE `aluno` SET `n1` = :n1, `n2` = :n2, `n3` = :n3, `n4` = :n4, `total`=:total WHERE (`id` = :a) limit 1";
 	$stmt = $pdo->prepare($sql);
     $stmt->bindParam(':a', $a);
-    $stmt->bindParam(':nome', $nome);
-    $stmt->bindParam(':receitas', $receitas);
-    $stmt->bindParam(':despesas', $despesas);
-    $stmt->bindParam(':obs', $obs);
+    $stmt->bindParam(':n1', $n1);
+    $stmt->bindParam(':n2', $n2);
+    $stmt->bindParam(':n3', $n3);
+    $stmt->bindParam(':n4', $n4);
+    $stmt->bindParam(':total', $total);
     $stmt->bindParam(':tempo', $tempo);
-    $stmt->bindParam(':data_val', $data_val);
     $stmt->execute();
 
     // Retornar uma resposta ao aplicativo
-    $response = array('success' => true, 'message' => ''.$tempo.', Titulo salvo com sucesso');
+    $response = array('success' => true, 'message' => ''.$tempo.', Votação bem sucedida!');
     echo json_encode($response);
 } catch (PDOException $e) {
     // Em caso de erro, retornar uma mensagem de erro

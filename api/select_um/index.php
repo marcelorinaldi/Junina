@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 $igor = $_GET['id'];
 
 // Consulta SQL para selecionar todos os dados da tabela usuario
-$sql = "SELECT * FROM orcamento where delecao=0 and id=".$igor." order by id desc";
+$sql = "SELECT * FROM aluno where id=".$igor." order by id desc limit 1";
 $result = $conn->query($sql);
 //print_r($result);
 // Verifica se há resultados para a consulta
