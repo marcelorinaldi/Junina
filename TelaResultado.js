@@ -3,7 +3,7 @@ import { Text, FlatList, TouchableOpacity, View, Image } from 'react-native';
 import css from './estilo/estilo';
 import Menu from './Menu';
 
-function TelaSelect({ navigation }) {
+function TelaResultado({ navigation }) {
   const [users, setUsers] = useState([]);
 
   // carrega dados da api 
@@ -24,7 +24,7 @@ function TelaSelect({ navigation }) {
       <Text> </Text>
       <Text> </Text>
       <TouchableOpacity onPress={() => navigation.navigate('TelaInicial')}>
-        <Image source={require('./assets/orcamento.png')} style={css.logo} />
+      <Image source={require('./assets/junina.png')} style={css.logo} />
       </TouchableOpacity>
       <Text></Text>
       <Text style={css.text}>Orçamentos cadastrados: {users.length}</Text>
@@ -58,4 +58,4 @@ function TelaSelect({ navigation }) {
   );
 }
 
-export default TelaSelect;
+export default TelaResultado;

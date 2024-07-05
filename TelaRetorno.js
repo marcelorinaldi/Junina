@@ -4,13 +4,13 @@ import css from './estilo/estilo';
 
 function TelaRetorno({ navigation }) {
     setTimeout(() => {
-    navigation.navigate('TelaInicial');
+    navigation.navigate('TelaResultado');
   }, 4000);
   
   return (
        <View style={css.container} >
  <Image style={{ width:330,height:280}}
-          source={require('./assets/orcamento.png')} />
+          source={require('./assets/junina.png')} />
     </View>
   );
 }
