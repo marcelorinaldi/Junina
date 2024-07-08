@@ -67,7 +67,8 @@ function TelaVotacao({ navigation, route }) {
     if (n1 && n2 && n3 && n4) {
       const total = (n1 + n2 + n3 + n4) / 4;
       try {
-        await axios.post('http://192.168.3.13/api/votacao/', { token, aluno, ...scores, total, tipo: 'votacao', jurado_id: id, jurado_nome: nome });
+        await axios.post('http://192.168.3.13/api/votacao/', { token, nome, curso, ...scores, categoria, total});
+        //await axios.post('http://192.168.3.13/api/votacao/', { token, aluno, ...scores, total, jurado_id: id, jurado_nome: nome });
         navigation.navigate('TelaRetorno');
       } catch (error) {
         console.error('Error submitting vote:', error);

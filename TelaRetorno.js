@@ -5,7 +5,7 @@ import css from './estilo/estilo';
 function TelaRetorno({ navigation }) {
     setTimeout(() => {
     navigation.navigate('TelaResultado');
-  }, 4000);
+  }, 2000);
   
   return (
        <View style={css.container} >

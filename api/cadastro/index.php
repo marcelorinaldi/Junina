@@ -24,20 +24,20 @@ try {
     $nome = isset($datax['nome']) ? $datax['nome'] : '';
     $curso = isset($datax['curso']) ? $datax['curso'] : '';
     $categoria = isset($datax['categoria']) ? $datax['categoria'] : '';
-    $tempo = date("Y-m-d H:i:s");
+    //$tempo = date("Y-m-d H:i:s");
 	
 	
     // Inserir os dados na tabela 'usuario'
-    $sql = "INSERT INTO aluno (nome, curso, categoria, data) VALUES (:nome, :curso, :categoria, :tempo)";
+    $sql = "INSERT INTO aluno (nome, curso, categoria) VALUES (:nome, :curso, :categoria)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':curso', $curso);
     $stmt->bindParam(':categoria', $categoria);
-    $stmt->bindParam(':tempo', $tempo);
+    //$stmt->bindParam(':tempo', $tempo);
     $stmt->execute();
 
     // Retornar uma resposta ao aplicativo
-    $response = array('success' => true, 'message' => ''.$tempo.', Usuário cadastrado!');
+    $response = array('success' => true, 'message' => 'Usuário cadastrado!');
     echo json_encode($response);
 } catch (PDOException $e) {
     // Em caso de erro, retornar uma mensagem de erro

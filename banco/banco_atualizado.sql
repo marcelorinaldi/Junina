@@ -29,9 +29,8 @@ CREATE TABLE `aluno` (
   `nome` varchar(45) DEFAULT NULL,
   `curso` varchar(45) DEFAULT NULL,
   `categoria` varchar(45) NOT NULL,
-  `data` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +39,7 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (1,'mario','Enfermagem','mister','2024-07-08 13:15:45'),(2,'ana','adm','miss','2024-07-08 13:16:29'),(3,'joao','sistemas','mister','2024-07-08 13:16:57'),(4,'fulana','jogos','miss','2024-07-08 13:17:31');
+INSERT INTO `aluno` VALUES (1,'mario','Enfermagem','mister'),(2,'ana','adm','miss'),(3,'joao','sistemas','mister'),(4,'fulana','jogos','miss'),(5,'semtempo','semdata','mister');
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +57,7 @@ CREATE TABLE `jurados` (
   `senha` varchar(45) DEFAULT NULL,
   `curso` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +66,7 @@ CREATE TABLE `jurados` (
 
 LOCK TABLES `jurados` WRITE;
 /*!40000 ALTER TABLE `jurados` DISABLE KEYS */;
-INSERT INTO `jurados` VALUES (1,'casa','casa','123','teste');
+INSERT INTO `jurados` VALUES (1,'casa','casa','123','teste'),(2,'teste','teste','123','casa');
 /*!40000 ALTER TABLE `jurados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +90,7 @@ CREATE TABLE `participantes` (
   `juradonome` varchar(45) DEFAULT NULL,
   `categoria` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +99,7 @@ CREATE TABLE `participantes` (
 
 LOCK TABLES `participantes` WRITE;
 /*!40000 ALTER TABLE `participantes` DISABLE KEYS */;
-INSERT INTO `participantes` VALUES (1,'1','','5','6','7','8',7,NULL,'ze 1|adm',''),(2,'2','','10','10','10','10',10,NULL,'chico 2|adm',''),(3,'3','','10','9','7','8',9,NULL,'chico 2|adm','');
+INSERT INTO `participantes` VALUES (1,'1','','5','6','7','8',7,NULL,'ze 1|adm',''),(2,'2','','10','10','10','10',10,NULL,'chico 2|adm',''),(3,'3','','10','9','7','8',9,NULL,'chico 2|adm',''),(4,NULL,NULL,'7','4','5','3',5,NULL,NULL,NULL),(5,NULL,NULL,'7','4','5','3',5,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `participantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 13:54:39
+-- Dump completed on 2024-07-08 16:21:33

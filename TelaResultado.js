@@ -36,17 +36,12 @@ function TelaResultado({ navigation }) {
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <View>
-            <View style={css.viewnumero2}>
-              <View style={css.principal2}>
-                <Text style={css.letra2}>{item.id} - {item.nome ? item.nome.substring(0, 32) : ''}</Text>
-              </View>
-            </View>
             <View style={css.principal}>
               <View style={css.viewletra}>
                 <Text style={css.letra}>{item.nome}</Text>
                 <Text style={css.letra3}>Curso: {item.curso}</Text>
                 <Text style={css.letra3}>Categoria: {item.categoria}</Text>
-                <Text style={css.letra3}>Total: {item.total}</Text>
+                <Text style={css.letra3}>Nota Final: {item.total}</Text>
               </View>
             </View>
           </View>

@@ -21,30 +21,36 @@ if (isset($token) && !empty($token) && $token === 'Q!W@ee344%%R') {
         $n2 = $data['n2'];
         $n3 = $data['n3'];
         $n4 = $data['n4'];
+        $categoria = $data['categoria'];
         $total = $data['total'];
-        //$tipo = $data['tipo'];
-        $jurado_id = $data['jurado_id'];
-        $jurado_nome = $data['jurado_nome'];
-        //$tempo = date("Y-m-d H:i:s");
+        // $tipo = $data['tipo'];
+        // $jurado_id = $data['jurado_id'];
+        // $jurado_nome = $data['jurado_nome'];
+        // $tempo = date("Y-m-d H:i:s");
 
         // Inserir os dados na tabela 'participantes'
-        $sql = "INSERT INTO participantes (nome, curso n1, n2, n3, n4, total, jurado_id, jurado_nome, categoria) VALUES (:nome, :curso, :n1, :n2, :n3, :n4, :total, :jurado_id, :jurado_nome, :categoria)";
+        //$sql = "INSERT INTO participantes (nome, curso n1, n2, n3, n4, total, jurado_id, jurado_nome, categoria) VALUES (:nome, :curso, :n1, :n2, :n3, :n4, :total, :jurado_id, :jurado_nome, :categoria)";
+        //$sql = "INSERT INTO participantes (juradonome, nome, curso n1, n2, n3, n4, categoria, total) VALUES (:nome, :curso, :n1, :n2, :n3, :n4, :categoria, :total)";
+        $sql = "INSERT INTO participantes (nome,curso,n1,n2,n3,n4,categoria,total) values (:nome, :curso, :n1, :n2, :n3, :n4, :categoria, :total)";
         $stmt = $pdo->prepare($sql);
+        // $stmt->bindParam(':nome', $nome);
+        // $stmt->bindParam(':curso', $curso);
         $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':curso', $curso);
         $stmt->bindParam(':n1', $n1);
         $stmt->bindParam(':n2', $n2);
         $stmt->bindParam(':n3', $n3);
         $stmt->bindParam(':n4', $n4);
+        $stmt->bindParam(':categoria', $categoria);
         $stmt->bindParam(':total', $total);
-        //$stmt->bindParam(':tipo', $tipo);
-        $stmt->bindParam(':jurado_id', $jurado_id);
-        $stmt->bindParam(':jurado_nome', $jurado_nome);
         //$stmt->bindParam(':tempo', $tempo);
+        // $stmt->bindParam(':tipo', $tipo);
+        // $stmt->bindParam(':jurado_id', $jurado_id);
+        // $stmt->bindParam(':jurado_nome', $jurado_nome);
         $stmt->execute();
 
         // Retornar uma resposta ao aplicativo
-        $response = array('success' => true, 'message' => ''.$tempo.', Votação realizada!');
+        $response = array('success' => true, 'message' => 'Votação realizada!');
         echo json_encode($response);
     } catch (PDOException $e) {
         // Em caso de erro, retornar uma mensagem de erro
@@ -55,4 +61,3 @@ if (isset($token) && !empty($token) && $token === 'Q!W@ee344%%R') {
     $response = array('success' => false, 'message' => 'Token inválido');
     echo json_encode($response);
 }
-?>
