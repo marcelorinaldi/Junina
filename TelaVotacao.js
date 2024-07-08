@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { Picker } from '@react-native-picker/picker';
-import { Text, View, Image, ScrollView, TouchableOpacity, Button, TextInput } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity, Button } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import css from './estilo/estilo2';
 import Menu from './Menu';
@@ -45,22 +45,14 @@ const fetchData = async (url, setData) => {
 
 function TelaVotacao({ navigation, route }) {
   const [users2, setUsers2] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [jurado, setJurado] = useState('');
   const [aluno, setAluno] = useState('');
-  const [nome2, setNome2] = useState('');
   const [scores, setScores] = useState({ n1: 1, n2: 1, n3: 1, n4: 1 });
-  const [selectedAluno, setSelectedAluno] = useState('1');
   const token = 'Q!W@ee344%%R';
 
   const { id = '', nome = '' } = route.params || {};
 
-  // useEffect(() => {
-  //   fetchData(`http://192.168.56.2/api/select_um/?token=${token}&id=${id}`, setUsers2);
-  // }, [id]);
-
   const fetchData2 = useCallback(() => {
-    fetchData('http://192.168.56.2/api/select/', setUsers2);
+    fetchData('http://192.168.3.13/api/selectAluno/', setUsers2);
   }, []);
 
   useFocusEffect(
@@ -69,23 +61,13 @@ function TelaVotacao({ navigation, route }) {
     }, [fetchData2])
   );
 
-  // const fetchData3 = useCallback(() => {
-  //   fetchData('http://192.168.56.2/api/votacao/', setUsers);
-  // }, []);
-
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     fetchData3();
-  //   }, [fetchData3])
-  // );
-
   const votar = async () => {
     const { n1, n2, n3, n4 } = scores;
 
-    if (nome2.trim() && n1 && n2 && n3 && n4) {
+    if (n1 && n2 && n3 && n4) {
       const total = (n1 + n2 + n3 + n4) / 4;
       try {
-        await axios.post('http://192.168.56.2/api/update/', { token, a: id, nome2, ...scores, total });
+        await axios.post('http://192.168.3.13/api/votacao/', { token, aluno, ...scores, total, tipo: 'votacao', jurado_id: id, jurado_nome: nome });
         navigation.navigate('TelaRetorno');
       } catch (error) {
         console.error('Error submitting vote:', error);
@@ -104,18 +86,12 @@ function TelaVotacao({ navigation, route }) {
         <Picker
           selectedValue={aluno}
           style={{ height: 50, width: 150 }}
-          onValueChange={setAluno}
+          onValueChange={(value) => setAluno(value)}
         >
           {users2.map((user, index) => (
             <Picker.Item key={index} style={css.letra2} label={`${user.nome} - ${user.categoria}`} value={user.categoria} />
           ))}
         </Picker>
-        {/* <TextInput
-          style={css.input}
-          placeholder="Nome"
-          value={nome2}
-          onChangeText={setNome2}
-        /> */}
         <View style={css.gridContainer}>
           {['Elegância', 'Desenvoltura', 'Simpatia', 'Sustentável'].map((criteria, index) => (
             <View key={index} style={css.gridItem}>

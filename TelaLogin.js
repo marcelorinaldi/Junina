@@ -19,7 +19,7 @@ function TelaLogin({ navigation }) {
   const autenticar = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://192.168.56.2/api/select_login/?token=${token}&login=${loginx}&senha=${senhax}`);
+      const response = await axios.get(`http://192.168.3.13/api/select_login/?token=${token}&login=${loginx}&senha=${senhax}`);
       const data = response.data;
       console.log('API Response:', data);
       setUsers(data);

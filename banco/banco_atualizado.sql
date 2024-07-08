@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `app_junina_v6` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `app_junina_v6`;
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: app_junina_v6
+-- Host: 127.0.0.1    Database: app_junina_v6
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.2.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,8 +29,9 @@ CREATE TABLE `aluno` (
   `nome` varchar(45) DEFAULT NULL,
   `curso` varchar(45) DEFAULT NULL,
   `categoria` varchar(45) NOT NULL,
+  `data` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +40,7 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (1,'maria ','enf','miss'),(2,'ket','enfermagem','miss'),(3,'Gisela','Desenvolvimento Sistemas','miss'),(4,'gisela2','sistemas','elegancia'),(5,'gisela2','sistemas','elegancia');
+INSERT INTO `aluno` VALUES (1,'mario','Enfermagem','mister','2024-07-08 13:15:45'),(2,'ana','adm','miss','2024-07-08 13:16:29'),(3,'joao','sistemas','mister','2024-07-08 13:16:57'),(4,'fulana','jogos','miss','2024-07-08 13:17:31');
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,9 +54,11 @@ DROP TABLE IF EXISTS `jurados`;
 CREATE TABLE `jurados` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) DEFAULT NULL,
+  `login` varchar(45) DEFAULT NULL,
+  `senha` varchar(45) DEFAULT NULL,
   `curso` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +67,7 @@ CREATE TABLE `jurados` (
 
 LOCK TABLES `jurados` WRITE;
 /*!40000 ALTER TABLE `jurados` DISABLE KEYS */;
-INSERT INTO `jurados` VALUES (1,'ze 1','adm'),(2,'chico 2','adm'),(3,'Gisela','Desenvolvimento Sistemas');
+INSERT INTO `jurados` VALUES (1,'casa','casa','123','teste');
 /*!40000 ALTER TABLE `jurados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +87,6 @@ CREATE TABLE `participantes` (
   `n3` varchar(45) DEFAULT NULL,
   `n4` varchar(45) DEFAULT NULL,
   `total` int DEFAULT NULL,
-  `tipo` varchar(45) DEFAULT NULL,
   `juradoid` varchar(45) DEFAULT NULL,
   `juradonome` varchar(45) DEFAULT NULL,
   `categoria` varchar(45) DEFAULT NULL,
@@ -98,7 +100,7 @@ CREATE TABLE `participantes` (
 
 LOCK TABLES `participantes` WRITE;
 /*!40000 ALTER TABLE `participantes` DISABLE KEYS */;
-INSERT INTO `participantes` VALUES (1,'1','','5','6','7','8',7,NULL,NULL,'ze 1|adm',''),(2,'2','','10','10','10','10',10,NULL,NULL,'chico 2|adm',''),(3,'3','','10','9','7','8',9,NULL,NULL,'chico 2|adm','');
+INSERT INTO `participantes` VALUES (1,'1','','5','6','7','8',7,NULL,'ze 1|adm',''),(2,'2','','10','10','10','10',10,NULL,'chico 2|adm',''),(3,'3','','10','9','7','8',9,NULL,'chico 2|adm','');
 /*!40000 ALTER TABLE `participantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-01 11:15:17
+-- Dump completed on 2024-07-08 13:54:39

@@ -17,7 +17,7 @@ function TelaInsert({ navigation }) {
       if (nome.trim() !== '' && senha.trim() !== '') {
         alert(nome + '\n cadastrado com sucesso!');
         console.log(nome, login, senha);
-        axios.post('http://192.168.56.2/api/cadastroJurado/', { token, nome, curso, login, senha })
+        axios.post('http://192.168.3.13/api/cadastroJurado/', { token, nome, curso, login, senha })
           .then(response => {
             const data = response.data;
             aviso = 0;

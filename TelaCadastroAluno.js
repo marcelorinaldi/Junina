@@ -17,7 +17,7 @@ function TelaInsert({ navigation }) {
 
   const cadastrar = () => {
     const token = 'Q!W@ee344%%R';
-    axios.post('http://192.168.56.2/api/cadastro/', { token, nome, curso, categoria })
+    axios.post('http://192.168.3.13/api/cadastro/', { token, nome, curso, categoria })
       .then(response => {
         Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
         navigation.navigate('TelaLogin');
